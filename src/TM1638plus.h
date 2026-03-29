@@ -20,7 +20,7 @@ public:
 	TM1638plus(uint8_t strobe, uint8_t clock, uint8_t data, bool highfreq);
 
 	// Methods
-	uint8_t readButtons(void);
+	uint32_t readButtons(void);
 	virtual void setLEDs(uint16_t greenred);
 	virtual void setLED(uint8_t position, uint8_t value);
 

@@ -211,9 +211,9 @@ void TM1638plus::displayHex(uint8_t position, uint8_t hex)
 	@return byte with value of buttons 1-8 b7b6b5b4b3b2b1b0 1 pressed, 0 not pressed.
 	@note User may have to debounce buttons depending on application.
 */
-uint8_t TM1638plus::readButtons()
+uint32_t TM1638plus::readButtons()
 {
-	uint8_t buttons = 0;
+	uint32_t buttons = 0;
 	uint8_t v =0;
 
 	digitalWrite(_STROBE_IO, LOW);
@@ -228,7 +228,7 @@ uint8_t TM1638plus::readButtons()
 		else
 			v = HighFreqshiftin(_DATA_IO, _CLOCK_IO, LSBFIRST) << i;
 
-		buttons |= v;
+		buttons = buttons << 8 | v;
 	}
 
 	pinMode(_DATA_IO, OUTPUT);
